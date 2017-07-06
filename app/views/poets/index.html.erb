@@ -1,1 +1,12 @@
-<h1>Welcome to QuillSeeker!</h1>
+<% @poets.each do |poet| %>
+
+  <div>
+    <h1><%= poet.name %></h1><br />
+    <i><%= poet.dates %></i><br />
+    <p><%= poet.description %></p><br />
+
+    </div>
+
+    <hr />
+
+  <% end %>
