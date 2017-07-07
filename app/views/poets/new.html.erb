@@ -1,0 +1,10 @@
+<div class="poet-box col-10 offset-1">
+  <h1>Enter Your Poet Details</h1>
+    <%= simple_form_for @poet do |f| %>
+      <%= f.input :name %>
+      <%= f.input :dates %>
+      <%= f.input :description %>
+      <br />
+      <%= f.submit 'Create', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
