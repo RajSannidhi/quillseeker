@@ -9,8 +9,12 @@ class PoetsController < ApplicationController
   end
 
   def create
-    Poet.create(poet_params)
-    redirect_to root_path
+    @poet = Poet.create(poet_params)
+    if @poet.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -19,6 +23,22 @@ class PoetsController < ApplicationController
 
   def edit
     @poet = Poet.find(params[:id])
+  end
+
+  def update
+    @poet = Poet.find(params[:id])
+    @poet.update_attributes(poet_params)
+    if @poet.valid?
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @poet = Poet.find(params[:id])
+    @poet.destroy
+    redirect_to root_path
   end
 
   private
