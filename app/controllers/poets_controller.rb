@@ -17,6 +17,10 @@ class PoetsController < ApplicationController
     @poet = Poet.find(params[:id])
   end
 
+  def edit
+    @poet = Poet.find(params[:id])
+  end
+
   private
 
   def poet_params
