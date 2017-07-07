@@ -13,6 +13,10 @@ class PoetsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @poet = Poet.find(params[:id])
+  end
+
   private
 
   def poet_params
