@@ -36,7 +36,7 @@
 
 
 <% @poet.poems.each do |poem| %>
-  <div class="col-12">
+  <div class="col-10 offset-1">
     <blockquote>
       <b><%= poem.title %></b>
         <% if poem.poemdate.present? %>
@@ -50,6 +50,7 @@
 
   <!-- Button trigger modal -->
 
+<div class="col-10 offset-1">
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
     Add a Poem
   </button>
