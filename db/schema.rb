@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706210949) do
+ActiveRecord::Schema.define(version: 20170707175640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "poems", force: :cascade do |t|
+    t.string   "title"
+    t.text     "poemtext"
+    t.string   "poemdate"
+    t.integer  "poet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poet_id"], name: "index_poems_on_poet_id", using: :btree
+  end
 
   create_table "poets", force: :cascade do |t|
     t.string   "name"

@@ -1,10 +1,58 @@
 <div class="poet-box col-10 offset-1">
   <h1><%= @poet.name %></h1>
   <i><%= @poet.dates %></i>
-  <br/><br/>
-  <p><%= @poet.description %></p>
+  <br/>
+  <p><%= @poet.description %></p><br />
     <div class="float-right">
     <%= link_to 'Edit', edit_poet_path(@poet), class: 'btn btn-primary' %>
     <%= link_to 'Destroy', poet_path(@poet), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add a Poem</h4>
+      </div>
+      <%= simple_form_for @poem, url: poet_poems_path(@poet) do |f| %>
+        <div class="modal-body">
+          <%= f.input :title %>
+          <%= f.input :poemdate %>
+          <%= f.input :poemtext %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add a Poem", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<% @poet.poems.each do |poem| %>
+  <div class="col-12">
+    <blockquote>
+      <b><%= poem.title %></b>
+        <% if poem.poemdate.present? %>
+          <small><%= poem.poemdate %></small>
+        <% end %>
+        <br />
+        <%= poem.poemtext %>
+    </blockquote>
+    </div>
+<% end %>
+
+  <!-- Button trigger modal -->
+
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Add a Poem
+  </button>
+</div>
+
+<div class="clear"></div>
